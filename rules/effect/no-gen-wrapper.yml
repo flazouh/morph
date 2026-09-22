@@ -1,0 +1,18 @@
+id: effect-no-gen-wrapper
+language: TypeScript
+severity: error
+message: "A function that only returns `Effect.gen(...)` is `Effect.fn(\"name\")(function* (...) {...})`, or `Effect.fnUntraced` when no span is wanted."
+files:
+  - "src/**/*.ts"
+  - "src/**/*.tsx"
+ignores:
+  - "src/**/*.test.ts"
+  - "src/**/*.test.tsx"
+rule:
+  kind: arrow_function
+  has:
+    field: body
+    any:
+      - pattern: Effect.gen(function* () { $$$ })
+      - pattern: Effect.gen(function*() { $$$ })
+      - pattern: Effect.gen(function* ($$$) { $$$ })

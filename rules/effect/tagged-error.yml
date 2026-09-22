@@ -1,0 +1,13 @@
+id: effect-tagged-error
+language: TypeScript
+severity: error
+message: An expected failure is a `Schema.TaggedError` class, not a subclass of `Error`.
+note: |
+  export class WebFailure extends Schema.TaggedError<WebFailure>()("WebFailure", { message: Schema.String }) {}
+  The class yields in a generator (`return yield* new WebFailure({ message })`), decodes over the wire,
+  and `Effect.catchTag("WebFailure", ...)` picks it out. See AGENTS.md and repos/effect/LLMS.md.
+files:
+  - "src/**/*.ts"
+  - "src/**/*.tsx"
+rule:
+  pattern: class $C extends Error { $$$ }

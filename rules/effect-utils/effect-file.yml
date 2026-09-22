@@ -1,0 +1,14 @@
+# Utility: matches a node whose file imports the `effect` package at runtime. Other rules say
+# `matches: effect-file`, so they apply to Effect code and leave page scripts (the kit) alone.
+id: effect-file
+language: TypeScript
+rule:
+  inside:
+    kind: program
+    stopBy: end
+    has:
+      stopBy: end
+      any:
+        - pattern: import { $$$ } from "effect"
+        - pattern: import * as $NS from "effect"
+        - pattern: import $D, { $$$ } from "effect"

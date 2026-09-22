@@ -1,8 +1,21 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "include": [],
-  "references": [
-    { "path": "tsconfig.packages.json" },
-    { "path": "tsconfig.tests.json" }
-  ]
+  "extends": "./.wxt/tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "types": ["chrome", "bun"],
+    "paths": { "@/*": ["./src/*"] }
+  },
+  "include": ["src", "scripts", "vite.config.ts", "wxt.config.ts", ".wxt/wxt.d.ts"],
+  "exclude": ["node_modules", ".output", "dist"]
 }

@@ -1,0 +1,11 @@
+id: effect-fn-no-pipe
+language: TypeScript
+severity: error
+message: "Do not `.pipe` an `Effect.fn`; pass the combinators as further arguments: `Effect.fn(\"name\")(function* () {...}, Effect.catch(...))`."
+files:
+  - "src/**/*.ts"
+  - "src/**/*.tsx"
+rule:
+  any:
+    - pattern: Effect.fn($N)($$$).pipe($$$)
+    - pattern: Effect.fnUntraced($$$).pipe($$$)

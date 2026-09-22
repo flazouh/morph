@@ -1,0 +1,5 @@
+# ast-grep: the Effect v4 style rules. `bun run lint:effect` runs them (scripts/lint-effect.ts).
+ruleDirs:
+  - rules/effect
+utilDirs:
+  - rules/effect-utils

@@ -1,0 +1,38 @@
+id: effect-decode-with-schema
+language: TypeScript
+severity: error
+message: "Untrusted data is decoded with `Schema` (`Schema.decodeUnknownOption(S)`, `Schema.is(S)`), not read through a cast or a hand-written type guard."
+note: |
+  const Ask = Schema.Struct({ type: Schema.Literal("fetchWeb"), url: Schema.String })
+  const askOf = Schema.decodeUnknownOption(Ask)
+  See src/bridge/user-scripts.ts for the pattern, and repos/effect/LLMS.md "Defining schemas".
+files:
+  - "src/**/*.ts"
+  - "src/**/*.tsx"
+rule:
+  matches: effect-file
+  any:
+    # A cast, then a field read: `(value as Ask).type === "x"`, `(input as Record<string, unknown>)?.[key]`.
+    - pattern: ($V as $T).$P
+    - pattern: ($V as $T)?.$P
+    - pattern: ($V as $T)[$K]
+    - pattern: ($V as $T)?.[$K]
+    # A hand-written type guard over unknown input. Narrowing a typed union (`step is ToolStep`
+    # over `Step`) is not decoding, so only a guard whose parameter is `unknown` matches.
+    - kind: type_predicate
+      inside:
+        any:
+          - kind: arrow_function
+          - kind: function_declaration
+          - kind: function_expression
+          - kind: method_definition
+        stopBy: end
+        has:
+          field: parameters
+          has:
+            kind: required_parameter
+            has:
+              kind: type_annotation
+              has:
+                kind: predefined_type
+                regex: ^unknown$

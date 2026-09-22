@@ -1,0 +1,62 @@
+@import "tailwindcss";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+@import "./palette.css";
+@import "./theme.css";
+
+@source "../../node_modules/streamdown/dist/*.js";
+
+/* `dark:` utilities and the palette flip together: both read the attribute main.tsx sets. */
+@custom-variant dark (&:where([data-beui-theme="dark"], [data-beui-theme="dark"] *));
+
+/* beui.dev's surfaces: frosted panes over the page, as its own site draws them. */
+@utility glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    inset 0 1px #ffffff0f,
+    0 24px 60px -24px #00000073;
+}
+@utility glass-thin {
+  background: var(--glass-thin-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+/* beUI's agent components hide the scrollbar of their own viewports and rely on this utility. */
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    min-width: 320px;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  /* The panel text scale (see appearance.ts). `zoom` scales the whole panel, so every
+   * px and rem size responds, not only the rem ones. `default` keeps the built-in size. */
+  :root[data-font-size="small"] {
+    zoom: 0.9;
+  }
+  :root[data-font-size="large"] {
+    zoom: 1.12;
+  }
+}

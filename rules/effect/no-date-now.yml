@@ -1,0 +1,10 @@
+id: effect-no-date-now
+language: TypeScript
+severity: error
+message: "Effect code reads the clock through `Clock.currentTimeMillis` or `DateTime.now`, so tests can set the time. `Date.now()` cannot be set."
+files:
+  - "src/**/*.ts"
+  - "src/**/*.tsx"
+rule:
+  pattern: Date.now()
+  matches: effect-file

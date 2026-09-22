@@ -1,0 +1,11 @@
+[build]
+builder = "RAILPACK"
+buildCommand = "bun run build:marketplace-web"
+watchPatterns = ["src/marketplace/**", "package.json", "bun.lock", "railway.toml"]
+
+[deploy]
+startCommand = "bun run start:marketplace-api"
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3

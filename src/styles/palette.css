@@ -1,0 +1,78 @@
+/*
+ * The beUI design tokens, as beui.dev itself wears them, plain CSS, keyed by
+ * `<html data-beui-theme="light|dark">`. The panel and the page kit share this one file.
+ * The panel sets the attribute from the OS (prefers-color-scheme); the kit sets it from
+ * the host page's own background, so a light site under a dark OS stays light. Without
+ * the attribute the light set applies.
+ *
+ * beui.dev's palette is near-monochrome with one accent, a teal. The card is a shade off
+ * the background, not white on grey; the borders are the foreground at 6% and 12%; the
+ * primary is the foreground itself. The glass and gradient tokens carry its surfaces.
+ */
+:root,
+:root[data-beui-theme="light"] {
+  --radius: 0.5rem;
+  --background: #fcfcfc;
+  --foreground: #0b0b0b;
+  --card: #f5f5f5;
+  --card-foreground: #0b0b0b;
+  --popover: #f5f5f5;
+  --popover-foreground: #0b0b0b;
+  --primary: #0b0b0b;
+  --primary-foreground: #fcfcfc;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #0b0b0b;
+  --muted: #f5f5f5;
+  --muted-foreground: #636363;
+  --accent: #00bebf;
+  --accent-foreground: #0b0b0b;
+  --destructive: #ee343b;
+  --destructive-foreground: #fcfcfc;
+  --border: #0b0b0b0f;
+  --border-strong: #0b0b0b1f;
+  --input: #0b0b0b0f;
+  --ring: #0b0b0b1f;
+  --success: #00bd6c;
+  --warning: #f5a500;
+  --neon: #45e059;
+  --violet: #a37aff;
+  --glass-bg: #fcfcfc8c;
+  --glass-border: #0b0b0b14;
+  --glass-strong-bg: #ffffffb3;
+  --glass-thin-bg: #ffffff73;
+  --gradient-bg: linear-gradient(135deg, #fcfcfc 0%, #ecf3f5 100%);
+  --gradient-accent: linear-gradient(to right, #00bebf 0%, #a37aff 100%);
+}
+
+:root[data-beui-theme="dark"] {
+  --background: #151515;
+  --foreground: #f2f2f2;
+  --card: #1c1c1c;
+  --card-foreground: #f2f2f2;
+  --popover: #1c1c1c;
+  --popover-foreground: #f2f2f2;
+  --primary: #f2f2f2;
+  --primary-foreground: #151515;
+  --secondary: #1c1c1c;
+  --secondary-foreground: #f2f2f2;
+  --muted: #1c1c1c;
+  --muted-foreground: #868686;
+  --accent: #00dadb;
+  --accent-foreground: #151515;
+  --destructive: #ee343b;
+  --destructive-foreground: #f2f2f2;
+  --border: #ffffff0d;
+  --border-strong: #ffffff1a;
+  --input: #ffffff0d;
+  --ring: #ffffff1a;
+  --success: #00bd6c;
+  --warning: #f5a500;
+  --neon: #45e059;
+  --violet: #ad8cff;
+  --glass-bg: #1c1c1c8c;
+  --glass-border: #ffffff14;
+  --glass-strong-bg: #1c1c1c99;
+  --glass-thin-bg: #15151573;
+  --gradient-bg: linear-gradient(135deg, #141414 0%, #161c1d 100%);
+  --gradient-accent: linear-gradient(to right, #00dadb 0%, #ad8cff 100%);
+}

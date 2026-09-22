@@ -1,0 +1,16 @@
+/*
+ * The sheet every beUI shadow root wears, kit and skin alike: Tailwind's layer order, its
+ * theme and utilities in their layers, the token map, and the `dark:` variant that reads
+ * the theme attribute the kit copies onto each host. Preflight is not here: a mounted
+ * component sits on the host page's base styles; a skin adds preflight itself, because
+ * it is a fresh page shell.
+ *
+ * The utilities sit in Tailwind's cascade layers so that a skin's sheet, adopted after
+ * the kit's, wins in the same layer: its `md:flex` beats the kit's `hidden`. Unlayered,
+ * the kit sheet would beat every layered rule after it, and once hid a skin's navigation.
+ */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "./theme.css";
+@custom-variant dark (&:where(:host([data-beui-theme="dark"]), :host([data-beui-theme="dark"]) *));

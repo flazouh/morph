@@ -1,0 +1,51 @@
+.sandbox-shell {
+  display: grid;
+  gap: 16px;
+  width: min(760px, calc(100% - 32px));
+  margin: 32px auto;
+}
+
+.sandbox-shell header,
+.sandbox-shell section {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  padding: 18px;
+}
+
+.sandbox-shell h1 {
+  margin: 6px 0;
+  font-size: 26px;
+}
+
+.sandbox-shell p {
+  margin: 0;
+  color: var(--muted-foreground);
+}
+
+.sandbox-kicker {
+  color: var(--accent);
+  font: 600 11px/1 var(--font-mono);
+  letter-spacing: 0.1em;
+}
+
+.host-region,
+.secure-region {
+  display: grid;
+  gap: 8px;
+}
+
+.secure-region input {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background);
+  padding: 10px;
+  color: var(--foreground);
+}
+
+#audit-log {
+  min-height: 22px;
+  margin: 10px 0 0;
+  padding-left: 20px;
+  color: var(--muted-foreground);
+}

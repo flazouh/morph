@@ -1,0 +1,12 @@
+id: effect-no-plain-error-fail
+language: TypeScript
+severity: error
+message: "`Effect.fail(new Error(...))` hides the failure from `catchTag`; fail with a `Schema.TaggedError`."
+files:
+  - "src/**/*.ts"
+  - "src/**/*.tsx"
+rule:
+  any:
+    - pattern: Effect.fail(new Error($$$))
+    - pattern: Effect.fail(new TypeError($$$))
+    - pattern: Effect.fail(new RangeError($$$))

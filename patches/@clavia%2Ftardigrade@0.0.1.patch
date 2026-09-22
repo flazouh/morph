@@ -1,0 +1,15 @@
+diff --git a/src/model/model.ts b/src/model/model.ts
+index e415463c84cc62c41dc66aa9e84add23ea4eaf41..ad58470ba96288209a35a4cd71372a3b4404e1ba 100644
+--- a/src/model/model.ts
++++ b/src/model/model.ts
+@@ -511,6 +511,10 @@ export const infer = (config: ModelConfig) => {
+             // default (`maxRetries: 2`, real waits it does not expose to us). Turned off here so
+             // a 429 or a 5xx surfaces to `react`'s own retry loop once, on our own backoff.
+             maxRetries: 0,
++            // This harness runs inside a browser extension page, where the key is the
++            // reader's own and never leaves their machine. The SDK's refusal guards a
++            // website shipping a shared key, which is not this.
++            dangerouslyAllowBrowser: true,
+             fetch: fetcher
+           })
+     // The actor decides the request, render included; the platform maps it to the wire and

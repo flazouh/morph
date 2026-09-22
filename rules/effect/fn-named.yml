@@ -1,0 +1,9 @@
+id: effect-fn-named
+language: TypeScript
+severity: error
+message: "`Effect.fn` takes the function's name first: `Effect.fn(\"Service.method\")(function* (...) {...})`. Without a span, use `Effect.fnUntraced`."
+files:
+  - "src/**/*.ts"
+  - "src/**/*.tsx"
+rule:
+  pattern: Effect.fn(function* $$$)

@@ -1,0 +1,26 @@
+@import "@fontsource-variable/inter";
+
+html,
+body {
+  margin: 0;
+  background: transparent;
+}
+
+/*
+ * The host sizes the frame to what the package drew, so the frame never scrolls: a bar
+ * here would take width from the document, which reports a narrower height, which moves
+    10| * the frame under the reader's pointer. The page outside scrolls instead.
+ */
+html {
+  overflow: hidden;
+}
+
+/*
+ * No floor under the package. The frame's height is the viewport, and a package told to
+ * fill the viewport can never measure smaller than the frame it was last given — so the
+ * frame grew with the content and then kept the space when the content shrank. The
+    20| * package draws what it has and the host follows it in both directions.
+ */
+#package-root {
+  min-height: 0;
+}

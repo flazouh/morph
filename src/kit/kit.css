@@ -1,0 +1,15 @@
+/*
+ * The stylesheet adopted into every mounted component's shadow root. The shared part is
+ * shadow.css; here the component sources for Tailwind to scan, and the host's own type.
+ * The components read the palette from the page's :root through inheritance.
+ */
+@import "../styles/shadow.css";
+@source "../components";
+@source "./";
+
+:host {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--foreground);
+}

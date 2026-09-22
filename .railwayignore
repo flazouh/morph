@@ -1,0 +1,10 @@
+.cursor
+.git
+.impeccable
+.DS_Store
+.env
+*.local
+dist
+node_modules
+.output
+.wxt

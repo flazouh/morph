@@ -1,0 +1,12 @@
+id: effect-predicate-module
+language: TypeScript
+severity: error
+message: "Runtime type checks come from the `Predicate` module (`Predicate.isString`, `Predicate.isNumber`, `Predicate.isObject`), not from `typeof`."
+files:
+  - "src/**/*.ts"
+  - "src/**/*.tsx"
+rule:
+  matches: effect-file
+  any:
+    - pattern: typeof $X === $S
+    - pattern: typeof $X !== $S
